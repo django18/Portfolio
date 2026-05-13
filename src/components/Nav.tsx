@@ -43,9 +43,10 @@ export function Nav() {
       </a>
       <div style={{ display: "flex", gap: "32px" }}>
         {[
-          { label: "Work", href: "#work" },
-          { label: "About", href: "#about" },
-          { label: "Contact", href: "#contact" },
+          { label: "Work", href: "/#work" },
+          { label: "Blog", href: "/blog" },
+          { label: "About", href: "/#about" },
+          { label: "Contact", href: "/#contact" },
         ].map(({ label, href }) => (
           <a
             key={label}
