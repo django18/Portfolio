@@ -1,3 +1,5 @@
+"use client";
+
 interface ActivityItem {
   readonly date: string;
   readonly repo: string;
