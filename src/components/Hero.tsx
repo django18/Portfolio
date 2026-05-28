@@ -1,19 +1,25 @@
 "use client";
 
+import { HeroCanvas } from "./HeroCanvas";
+
 export function Hero() {
   return (
-    <section
-      style={{
-        minHeight: "100vh",
-        display: "flex",
-        flexDirection: "column",
-        justifyContent: "flex-end",
-        padding: "0 24px 80px",
-        maxWidth: "1100px",
-        margin: "0 auto",
-        width: "100%",
-      }}
-    >
+    <>
+      <HeroCanvas />
+      <section
+        style={{
+          minHeight: "100vh",
+          display: "flex",
+          flexDirection: "column",
+          justifyContent: "flex-end",
+          padding: "0 24px 80px",
+          maxWidth: "1100px",
+          margin: "0 auto",
+          width: "100%",
+          position: "relative",
+          zIndex: 1,
+        }}
+      >
       <div>
         <p
           style={{
@@ -80,7 +86,7 @@ export function Hero() {
               ((e.currentTarget as HTMLElement).style.opacity = "1")
             }
           >
-            View Work
+            See Projects
             <span aria-hidden>→</span>
           </a>
           <a
@@ -115,5 +121,6 @@ export function Hero() {
         </div>
       </div>
     </section>
+    </>
   );
 }

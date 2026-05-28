@@ -18,6 +18,13 @@ const links = [
   },
 ] as const;
 
+// Resume link rendered separately so it can use a different value/href pattern
+const resumeLink = {
+  label: "Resume",
+  value: "Download PDF ↓",
+  href: "/resume.pdf",
+} as const;
+
 export function Contact() {
   return (
     <section
@@ -128,6 +135,49 @@ export function Contact() {
               </span>
             </a>
           ))}
+          {/* Add resume.pdf to /public/resume.pdf */}
+          <a
+            href={resumeLink.href}
+            style={{
+              display: "flex",
+              alignItems: "center",
+              justifyContent: "space-between",
+              padding: "20px 0",
+              borderBottom: "1px solid var(--border)",
+              textDecoration: "none",
+              transition: "all 0.15s",
+              color: "inherit",
+            }}
+            onMouseEnter={(e) => {
+              const el = e.currentTarget as HTMLElement;
+              el.style.paddingLeft = "8px";
+            }}
+            onMouseLeave={(e) => {
+              const el = e.currentTarget as HTMLElement;
+              el.style.paddingLeft = "0";
+            }}
+          >
+            <div>
+              <p
+                style={{
+                  fontSize: "11px",
+                  color: "var(--text-muted)",
+                  fontFamily: "var(--font-mono)",
+                  textTransform: "uppercase",
+                  letterSpacing: "0.08em",
+                  marginBottom: "2px",
+                }}
+              >
+                {resumeLink.label}
+              </p>
+              <p style={{ fontSize: "15px", color: "var(--text-primary)" }}>
+                {resumeLink.value}
+              </p>
+            </div>
+            <span style={{ color: "var(--text-muted)", fontSize: "18px" }}>
+              →
+            </span>
+          </a>
         </div>
       </div>
     </section>

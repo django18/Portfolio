@@ -13,7 +13,22 @@ interface Project {
   readonly impactLabel: string;
   readonly stack: readonly string[];
   readonly tags: readonly string[];
+  readonly url?: string;
+  readonly image?: string;
 }
+
+const gradients: Record<string, string> = {
+  "AI Voice Tutor":
+    "linear-gradient(135deg, #1a1035 0%, #2d1b69 50%, #0f2027 100%)",
+  "PadhAI Desktop & Android":
+    "linear-gradient(135deg, #0d2137 0%, #0a3d2e 50%, #071a12 100%)",
+  "Mobile Trading Platform":
+    "linear-gradient(135deg, #1a0e00 0%, #3d2200 50%, #1a0e00 100%)",
+  "Onboarding Redesign":
+    "linear-gradient(135deg, #1a0020 0%, #2d0040 50%, #0f001a 100%)",
+  "Autonomous AI Trading Agent":
+    "linear-gradient(135deg, #001a1a 0%, #003333 50%, #001a3d 100%)",
+};
 
 const projects: readonly Project[] = [
   {
@@ -21,6 +36,7 @@ const projects: readonly Project[] = [
     company: "SigIQ · PadhAI",
     period: "2025",
     role: "Lead Frontend Engineer",
+    url: "https://evertutor.ai/",
     problem: "Students needed real-time tutoring without a human tutor on call.",
     what:
       "Built an AI tutor from scratch — voice input, chat, draw annotation on a shared whiteboard, and gamification, all in one session. Used XState to model the multi-modal state machine so voice ↔ chat ↔ draw transitions were deterministic, not spaghetti. Added socket connections for dynamic lesson planning that adapted mid-session based on student responses.",
@@ -93,7 +109,6 @@ function ProjectCard({ project }: { project: Project }) {
   return (
     <article
       style={{
-        padding: "32px",
         border: "1px solid var(--border)",
         borderRadius: "12px",
         background: "var(--surface)",
@@ -102,6 +117,7 @@ function ProjectCard({ project }: { project: Project }) {
         gap: "20px",
         transition: "border-color 0.2s",
         cursor: "default",
+        overflow: "hidden",
       }}
       onMouseEnter={(e) =>
         ((e.currentTarget as HTMLElement).style.borderColor = "var(--text-muted)")
@@ -110,15 +126,57 @@ function ProjectCard({ project }: { project: Project }) {
         ((e.currentTarget as HTMLElement).style.borderColor = "var(--border)")
       }
     >
-      <div
-        style={{
-          display: "flex",
-          alignItems: "flex-start",
-          justifyContent: "space-between",
-          gap: "16px",
-          flexWrap: "wrap",
-        }}
-      >
+      {project.image ? (
+        <img
+          src={project.image}
+          alt={project.title}
+          style={{
+            width: "100%",
+            height: "180px",
+            objectFit: "cover",
+            display: "block",
+            borderRadius: "12px 12px 0 0",
+          }}
+        />
+      ) : (
+        <div
+          style={{
+            height: "180px",
+            background: gradients[project.title] ?? "linear-gradient(135deg, #111 0%, #222 100%)",
+            borderRadius: "12px 12px 0 0",
+            position: "relative",
+            overflow: "hidden",
+          }}
+        >
+          <span
+            style={{
+              position: "absolute",
+              top: "50%",
+              left: "50%",
+              transform: "translate(-50%, -50%)",
+              fontSize: "80px",
+              opacity: 0.06,
+              fontFamily: "var(--font-mono)",
+              userSelect: "none",
+              whiteSpace: "nowrap",
+              pointerEvents: "none",
+            }}
+          >
+            {project.tags[0]}
+          </span>
+        </div>
+      )}
+
+      <div style={{ padding: "0 32px", display: "flex", flexDirection: "column", gap: "20px" }}>
+        <div
+          style={{
+            display: "flex",
+            alignItems: "flex-start",
+            justifyContent: "space-between",
+            gap: "16px",
+            flexWrap: "wrap",
+          }}
+        >
         <div>
           <h3
             style={{
@@ -127,9 +185,41 @@ function ProjectCard({ project }: { project: Project }) {
               letterSpacing: "-0.02em",
               color: "var(--text-primary)",
               marginBottom: "4px",
+              display: "flex",
+              alignItems: "center",
+              gap: "8px",
             }}
           >
             {project.title}
+            {project.url && (
+              <a
+                href={project.url}
+                target="_blank"
+                rel="noopener noreferrer"
+                style={{
+                  fontSize: "11px",
+                  padding: "2px 8px",
+                  borderRadius: "20px",
+                  background: "var(--accent-dim)",
+                  color: "var(--accent)",
+                  fontFamily: "var(--font-mono)",
+                  border: "1px solid var(--accent)",
+                  opacity: 0.85,
+                  textDecoration: "none",
+                  display: "inline-flex",
+                  alignItems: "center",
+                  transition: "opacity 0.15s",
+                }}
+                onMouseEnter={(e) =>
+                  ((e.currentTarget as HTMLAnchorElement).style.opacity = "1")
+                }
+                onMouseLeave={(e) =>
+                  ((e.currentTarget as HTMLAnchorElement).style.opacity = "0.85")
+                }
+              >
+                Live ↗
+              </a>
+            )}
           </h3>
           <p
             style={{
@@ -256,6 +346,8 @@ function ProjectCard({ project }: { project: Project }) {
           ))}
         </div>
       </div>
+      </div>
+      <div style={{ height: "12px" }} />
     </article>
   );
 }
