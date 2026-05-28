@@ -5,13 +5,6 @@ const skills = {
   "Infra & Tools": ["Supabase", "Firebase", "PostgreSQL", "MongoDB", "CI/CD", "Playwright"],
 } as const;
 
-const timeline = [
-  { year: "2025", role: "Lead Frontend Engineer", company: "SigIQ", location: "Gurugram" },
-  { year: "2024", role: "Senior Frontend Engineer", company: "Saxo Bank", location: "Gurugram" },
-  { year: "2021–23", role: "Frontend Engineer", company: "LeadIQ", location: "Singapore (Remote)" },
-  { year: "2019–21", role: "Frontend Engineer", company: "Saxo Bank", location: "Gurugram" },
-  { year: "2016–19", role: "Research Engineer", company: "C-DOT", location: "New Delhi" },
-] as const;
 
 export function About() {
   return (
@@ -79,55 +72,7 @@ export function About() {
           </div>
         </div>
 
-        <div style={{ display: "flex", flexDirection: "column", gap: "48px" }}>
-          <div>
-            <h3
-              style={{
-                fontSize: "13px",
-                color: "var(--text-muted)",
-                fontFamily: "var(--font-mono)",
-                textTransform: "uppercase",
-                letterSpacing: "0.08em",
-                marginBottom: "20px",
-              }}
-            >
-              Timeline
-            </h3>
-            <div style={{ display: "flex", flexDirection: "column", gap: "0" }}>
-              {timeline.map(({ year, role, company, location }, i) => (
-                <div
-                  key={i}
-                  style={{
-                    display: "grid",
-                    gridTemplateColumns: "80px 1fr",
-                    gap: "16px",
-                    padding: "12px 0",
-                    borderBottom: i < timeline.length - 1 ? "1px solid var(--border)" : "none",
-                  }}
-                >
-                  <span
-                    style={{
-                      fontSize: "11px",
-                      color: "var(--text-muted)",
-                      fontFamily: "var(--font-mono)",
-                      paddingTop: "2px",
-                    }}
-                  >
-                    {year}
-                  </span>
-                  <div>
-                    <p style={{ fontSize: "14px", color: "var(--text-primary)", fontWeight: 500 }}>
-                      {role}
-                    </p>
-                    <p style={{ fontSize: "12px", color: "var(--text-muted)" }}>
-                      {company} · {location}
-                    </p>
-                  </div>
-                </div>
-              ))}
-            </div>
-          </div>
-
+        <div>
           <div>
             <h3
               style={{
