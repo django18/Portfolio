@@ -43,7 +43,7 @@ export function Nav() {
       </a>
       <div style={{ display: "flex", gap: "32px" }}>
         {[
-          { label: "Work", href: "/#work" },
+          { label: "Work", href: "/#experience" },
           { label: "Blog", href: "/blog" },
           { label: "About", href: "/#about" },
           { label: "Contact", href: "/#contact" },
